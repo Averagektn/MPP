@@ -1,4 +1,6 @@
-﻿namespace TracerLab
+﻿using TracerLab.Tracing;
+
+namespace TracerLab
 {
     internal class OuterClass
     {
