@@ -1,11 +1,23 @@
-﻿using TracerLab;
-using TracingTools.Serializer;
+﻿using TracingTools.Serializer;
 using TracingTools.Tracing;
 
 var tracer = new Tracer();
-var outerClass = new OuterClass(tracer);
 
-outerClass.MyMethod();
+var firstThread = new Thread(() =>
+{
+    tracer.StartTrace();
+    var thread = new Thread(() =>
+    {
+        tracer.StartTrace();
+        tracer.StopTrace();
+    });
+    thread.Start();
+    thread.Join();
+    tracer.StopTrace();
+});
+firstThread.Start();
+firstThread.Join();
+
 var res = tracer.GetTraceResult();
 
 var serializer = new SerializerXML();
