@@ -1,4 +1,4 @@
-﻿namespace TracerLab.Tracing
+﻿namespace TracingTools.Tracing
 {
     public class TraceResult(ICollection<ThreadData> threadsData)
     {

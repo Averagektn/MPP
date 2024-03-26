@@ -1,7 +1,7 @@
 ﻿using System.Collections.Concurrent;
 using System.Diagnostics;
 
-namespace TracerLab.Tracing
+namespace TracingTools.Tracing
 {
     public class Tracer : ITracer
     {

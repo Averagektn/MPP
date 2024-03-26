@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace TracerLab.Tracing
+namespace TracingTools.Tracing
 {
     public class MethodData(string methodName, string className)
     {

@@ -1,11 +1,14 @@
-﻿using Newtonsoft.Json;
-using TracerLab;
-using TracerLab.Tracing;
+﻿using TracerLab;
+using TracingTools.Serializer;
+using TracingTools.Tracing;
 
 var tracer = new Tracer();
 var outerClass = new OuterClass(tracer);
-var innerClass = new InnerClass(tracer);
+
 outerClass.MyMethod();
-innerClass.InnerMethod();
 var res = tracer.GetTraceResult();
-Console.WriteLine(JsonConvert.SerializeObject(res, Formatting.Indented));
+
+var serializer = new SerializerXML();
+var writer = new SerializedWriter(serializer);
+
+writer.Write(res, Console.Out);

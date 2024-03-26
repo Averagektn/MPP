@@ -1,4 +1,4 @@
-﻿namespace TracerLab.Tracing
+﻿namespace TracingTools.Tracing
 {
     public interface ITracer
     {

@@ -1,4 +1,4 @@
-﻿using TracerLab.Tracing;
+﻿using TracingTools.Tracing;
 
 namespace TracerLab
 {
@@ -16,9 +16,9 @@ namespace TracerLab
             _tracer.StartTrace();
 
             Thread.Sleep(new Random().Next(1, 100));
-            
-/*            AnotherMethod();
-            AnotherMethod();*/
+
+            AnotherMethod();
+            AnotherMethod();
 
             _tracer.StopTrace();
         }
