@@ -1,9 +1,7 @@
-﻿using System.Collections.Immutable;
-
-namespace TracerLab.Tracing
+﻿namespace TracerLab.Tracing
 {
-    public class TraceResult(IDictionary<int, List<MethodData>> pairs)
+    public class TraceResult(ICollection<ThreadData> threadsData)
     {
-        public ImmutableDictionary<int, List<MethodData>> Result => pairs.ToImmutableDictionary();
+        public IReadOnlyList<ThreadData> Threads => [.. threadsData];
     }
 }

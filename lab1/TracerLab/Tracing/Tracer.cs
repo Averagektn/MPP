@@ -8,7 +8,8 @@ namespace TracerLab.Tracing
         private readonly ConcurrentDictionary<int, List<MethodData>> _traceData = [];
         private readonly ConcurrentDictionary<int, Stack<MethodData>> _threadStack = [];
 
-        public TraceResult GetTraceResult() => new(_traceData);
+        public TraceResult GetTraceResult()
+            => new(_traceData.Select(kv => new ThreadData(kv.Key, $"{kv.Value.Sum(v => v.Time)}ms", kv.Value)).ToList());
 
         public void StartTrace()
         {
@@ -19,7 +20,7 @@ namespace TracerLab.Tracing
             var threadId = Environment.CurrentManagedThreadId;
 
             // If first element just push to stack and dictionary
-            if (!_threadStack.ContainsKey(threadId))
+            if (!_threadStack.TryGetValue(threadId, out Stack<MethodData>? value))
             {
                 _traceData[threadId] = [method];
                 _threadStack[threadId] = new();
@@ -28,17 +29,17 @@ namespace TracerLab.Tracing
             // If value already exists, find position by using stack
             else
             {
-                if (_threadStack[threadId].Count == 0)
+                if (value.Count == 0)
                 {
                     _traceData[threadId].Add(method);
                 }
                 else
                 {
-                    var methodData = _threadStack[threadId].Peek();
+                    var methodData = value.Peek();
                     methodData.Methods.Add(method);
                 }
 
-                _threadStack[threadId].Push(method);
+                value.Push(method);
             }
             method.StartTimer();
         }

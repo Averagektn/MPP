@@ -2,9 +2,9 @@
 
 namespace TracerLab
 {
-    internal class InnerClass
+    public class InnerClass
     {
-        private readonly ITracer _tracer;
+        public readonly ITracer _tracer;
 
         internal InnerClass(ITracer tracer)
         {
@@ -14,6 +14,20 @@ namespace TracerLab
         public void InnerMethod()
         {
             _tracer.StartTrace();
+
+            Thread.Sleep(new Random().Next(1, 100));
+            
+/*            AnotherMethod();
+            AnotherMethod();*/
+
+            _tracer.StopTrace();
+        }
+
+        private void AnotherMethod()
+        {
+            _tracer.StartTrace();
+
+            Thread.Sleep(new Random().Next(1, 100));
 
             _tracer.StopTrace();
         }

@@ -9,7 +9,6 @@ namespace TracerLab.Tracing
         public long Time { get; private set; }
         public List<MethodData> Methods { get; } = [];
         private readonly Stopwatch _stopwatch = new();
-        
 
         public void StartTimer()
         {

@@ -8,4 +8,4 @@ var innerClass = new InnerClass(tracer);
 outerClass.MyMethod();
 innerClass.InnerMethod();
 var res = tracer.GetTraceResult();
-Console.WriteLine(JsonConvert.SerializeObject(res.Result, Formatting.Indented));
+Console.WriteLine(JsonConvert.SerializeObject(res, Formatting.Indented));
