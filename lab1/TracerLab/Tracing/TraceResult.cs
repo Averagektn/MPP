@@ -1,15 +1,9 @@
 ﻿using System.Collections.Immutable;
-using DictionaryData = (System.Collections.Generic.List<TracerLab.Tracing.ThreadData> ThreadData, int Time);
 
 namespace TracerLab.Tracing
 {
-    public class TraceResult(IDictionary<int, DictionaryData> Pairs)
+    public class TraceResult(IDictionary<int, List<MethodData>> pairs)
     {
-        public ImmutableDictionary<int, DictionaryData> Result => Pairs.ToImmutableDictionary();
-
-        public override string ToString()
-        {
-            return base.ToString()!;
-        }
+        public ImmutableDictionary<int, List<MethodData>> Result => pairs.ToImmutableDictionary();
     }
 }
