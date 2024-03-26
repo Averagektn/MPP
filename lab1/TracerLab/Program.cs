@@ -23,4 +23,6 @@ var res = tracer.GetTraceResult();
 var serializer = new SerializerXML();
 var writer = new SerializedWriter(serializer);
 
+using var stream = new StreamWriter("res.json");
+writer.Write(res, stream);
 writer.Write(res, Console.Out);

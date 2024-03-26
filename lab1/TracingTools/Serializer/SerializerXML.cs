@@ -9,7 +9,7 @@ namespace TracingTools.Serializer
         public string Serialize(object obj)
         {
             var json = JsonConvert.SerializeObject(obj);
-            var node = JsonConvert.DeserializeXNode(json, "") ?? new XDocument();
+            var node = JsonConvert.DeserializeXNode(json, "root") ?? new XDocument();
 
             return node.ToString();
         }
